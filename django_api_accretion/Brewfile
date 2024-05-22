@@ -1,0 +1,7 @@
+tap "homebrew/bundle"
+tap "homebrew/core"
+brew "deno"
+brew "gcc"
+brew "mingw-w64"
+brew "openblas"
+brew "suite-sparse"

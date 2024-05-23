@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "sell",
     "contact", 
     "database", 
+    "database_visualization",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

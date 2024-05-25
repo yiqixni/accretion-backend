@@ -1,4 +1,4 @@
-# tests.py 
+# tests.py scraps the county registry of deeds in Massachusetts and returns a json file 
 # testsDell returns the json data for 22 dell st property for demo 
 
 from bs4 import BeautifulSoup 

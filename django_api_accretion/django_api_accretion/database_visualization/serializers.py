@@ -20,5 +20,6 @@ class PropertyDataForView(serializers.ModelSerializer):
         representation = super().to_representation(instance)
         request = self.context.get('request')
         if request:
-            representation['imageLink'] = request.build_absolute_uri(instance.imageLink)
+            # representation['imageLink'] = request.build_absolute_uri(instance.imageLink)
+            representation['imageLink'] = "https://7baf-2607-fb90-9e17-4939-1069-14dd-683-ed6e.ngrok-free.app" + (instance.imageLink)
         return representation 

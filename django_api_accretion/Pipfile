@@ -15,6 +15,9 @@ gunicorn = "*"
 django-ses = "*"
 beautifulsoup4 = "*"
 python-dotenv = "*"
+boto3 = "*"
+django-storages = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 

@@ -1,0 +1,16 @@
+# Git
+.git
+.gitignore
+
+# Docker
+.docker
+
+# Python
+django_api_accretion/__pycache__/
+django_api_accretion/*/__pycache__/
+django_api_accretion/*/*/__pycache__/
+django_api_accretion/*/*/*/__pycache__/
+django_api_accretion/.env/
+
+# Local PostgreSQL data
+data/

@@ -2,7 +2,8 @@
 from .settings_base import *
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-production-secret-key')
-DEBUG = False
+# DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = [] #define allowed host like accretion.life
 
 DATABASES = {

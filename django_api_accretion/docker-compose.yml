@@ -1,10 +1,7 @@
-# docker-compose for production environment 
-
 version: "3.8" 
 services:  
   app: 
     build: . 
-    restart: always 
     volumes:
       - ./django_api_accretion:/django_api_accretion/ # map the project folder to the docker image ## only for development 
       - ./django_api_accretion/media:/vol/web/media/  
@@ -17,14 +14,19 @@ services:
       - ./.env 
     environment:
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY} 
-      - DEBUG=0
-      - ENVIRONMENT=production
+      - DEBUG=1 
+      - ENVIRONMENT=development
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
     depends_on:
       - db
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
   
   db: 
       image: postgres 
@@ -36,16 +38,6 @@ services:
         - "5432:5432"
       volumes:
         - postgres_data:/var/lib/postgresql/data 
-  
-  nginx: 
-    image: nginx:latest 
-    ports: 
-      - "80:80" 
-    volumes: 
-      - ./proxy/nginx.conf:/etc/nginx/nginx.conf # Mount Nginx configuration file
-      - ./django_api_accretion/static:/vol/web/static  # Mount static files directory
-    depends_on:
-      - app 
 
-volumes: 
+volumes:
   postgres_data: 

@@ -127,6 +127,7 @@ INTERNAL_IPS = [
 # Configure corsheaders
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000", 
+    "http://127.0.0.1:3000",
     "https://accretion.life",
     "https://www.accretion.life",  
     "https://4f4c-2607-fb90-9e17-4939-1069-14dd-683-ed6e.ngrok-free.app",    
@@ -173,3 +174,17 @@ AWS_SES_REGION_NAME = 'us-east-2'  # e.g., 'us-east-1'
 DEFAULT_FROM_EMAIL = 'yiqinix@gmail.com'
 # SERVER_EMAIL = 'support@accretion.life'
 
+# # error logging setting 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}

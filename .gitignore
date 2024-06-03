@@ -1,5 +1,3 @@
 django_api_accretion/.env
 django_api_accretion/django_api_accretion/media
 accretion-backend-deployment.pem
-Dockerfile
-docker-compose.yml 

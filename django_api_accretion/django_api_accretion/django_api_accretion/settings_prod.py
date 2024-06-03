@@ -1,10 +1,16 @@
-# settings_prod.py
+# settings_prod.py for the production environment 
+import os 
 from .settings_base import *
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-production-secret-key')
-# DEBUG = False
 DEBUG = True
-ALLOWED_HOSTS = [] #define allowed host like accretion.life
+
+print(f"=====Starting Django in {os.getenv('ENVIRONMENT')} environment====")
+
+#define allowed host like accretion.life
+ALLOWED_HOSTS = [
+    "backend-1.accretion.life", 
+    "127.0.0.1", 
+] 
 
 DATABASES = {
     "default": {
@@ -16,9 +22,6 @@ DATABASES = {
         "PORT": os.getenv("DB_PORT", "5432"),
     }
 }
-
-# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-# STATIC_URL = '/static/'
 
 # AWS S3 Configuration
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')

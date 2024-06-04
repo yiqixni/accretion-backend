@@ -122,6 +122,7 @@ REST_FRAMEWORK = {
 # used for debugging toolbar
 INTERNAL_IPS = [
     "127.0.0.1", 
+    "localhost", 
 ]
 
 # Configure corsheaders

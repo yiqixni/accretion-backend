@@ -6,7 +6,9 @@ from .settings_base import *
 DEBUG = True
 print(f"=====Starting Django in {os.getenv('ENVIRONMENT')} environment====")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "http://3.147.46.192", # for EC2 instance 
+]
 
 #### STATIC/MEDIA FILE CONFIGURATION ####
 # Static files (CSS, JavaScript, Images)

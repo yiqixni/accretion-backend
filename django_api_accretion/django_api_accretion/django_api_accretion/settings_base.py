@@ -130,8 +130,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000", 
     "http://127.0.0.1:3000",
     "https://accretion.life",
-    "https://www.accretion.life",  
-    "http://3.147.46.192", # for EC2 instance 
+    "https://www.accretion.life",      
 ]
 
 CORS_ALLOWED_METHODS = [

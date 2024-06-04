@@ -131,7 +131,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "https://accretion.life",
     "https://www.accretion.life",  
-    "https://4f4c-2607-fb90-9e17-4939-1069-14dd-683-ed6e.ngrok-free.app",    
+    "3.147.46.192", # for EC2 instance 
 ]
 
 CORS_ALLOWED_METHODS = [

@@ -45,7 +45,7 @@ COPY ./scripts/entrypoint.sh /entrypoint.sh
 
 
 # Expose the port the app runs on
-EXPOSE 8000
+# EXPOSE 8000
 
 # Set the entrypoint
 ENTRYPOINT ["/entrypoint.sh"]

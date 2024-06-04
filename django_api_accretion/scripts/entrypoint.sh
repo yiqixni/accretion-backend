@@ -1,14 +1,14 @@
 #!/bin/sh
 
-# Apply database migrations
+## Apply database migrations
 echo "Applying database migrations..."
 python manage.py makemigrations
 python manage.py migrate
 
-# Collect static files (if necessary)
-# echo "Collecting static files..."
-# python manage.py collectstatic --noinput
+## Collect static files (if necessary)
+echo "Collecting static files..."
+python manage.py collectstatic --noinput
 
-# Start server
+## Start server
 echo "Starting server..."
 exec "$@"

@@ -17,15 +17,25 @@ COPY requirements.txt /django_api_accretion/requirements.txt
 COPY ./django_api_accretion /django_api_accretion/
 
 ## Install system dependencies  ##
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-       build-essential \
-       libpq-dev \
-       gcc \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \ 
-    && pip install --upgrade pip && pip install -r requirements.txt \
-    && adduser --disabled-password --no-create-home django     
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends  \
+            build-essential  \
+            libpq-dev  \
+            gcc && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \ 
+    pip install --upgrade pip && pip install -r requirements.txt && \
+    # create django as non-root user
+    adduser --disabled-password --no-create-home django  && \
+    # create static file directory and grant permission 
+    mkdir -p /vol/web/static /vol/web/media && \
+    chmod -R 755 /vol && \    
+    # change ownership from root to django user
+    chown -R django /django_api_accretion /vol
+
+
+## change user to django instead of default root user 
+USER django
 
 # Copy entrypoint script
 COPY ./scripts/entrypoint.sh /entrypoint.sh
@@ -33,10 +43,6 @@ COPY ./scripts/entrypoint.sh /entrypoint.sh
 # Ensure the entrypoint script is executable
 # RUN chmod +x /entrypoint.sh
 
-## Collect static files into one location: need to setup STATIC_ROOT directory first 
-RUN mkdir -p /vol/web/static /vol/web/media \
-    && chmod -R 755 /vol/web \
-    && python manage.py collectstatic --noinput
 
 # Expose the port the app runs on
 EXPOSE 8000
@@ -44,8 +50,5 @@ EXPOSE 8000
 # Set the entrypoint
 ENTRYPOINT ["/entrypoint.sh"]
 
-# change user to django instead of default root user 
-USER django
-
-# Run the application
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "django_api_accretion.wsgi:application"]
+# Run the application: commented out run gunicorn in docker-compose 
+# CMD ["gunicorn", "--bind", "0.0.0.0:8000", "django_api_accretion.wsgi:application"]

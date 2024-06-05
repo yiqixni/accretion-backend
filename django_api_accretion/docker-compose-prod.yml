@@ -38,16 +38,19 @@ services:
       volumes:
         - postgres_data:/var/lib/postgresql/data 
   
-  # nginx: 
-  #   image: nginx:latest 
-  #   ports: 
-  #     - "80:80" 
-  #   volumes: 
-  #     - ./proxy/nginx.conf:/etc/nginx/nginx.conf # Mount Nginx configuration file
-  #     - ./django_api_accretion/static:/vol/web/static  # Mount static files directory
-  #     - ./django_api_accretion/media:/vol/web/media 
-  #   depends_on:
-  #     - app 
+  nginx: 
+    image: nginx:latest 
+    build: 
+      context: ./proxy
+    # restart: always
+    ports: 
+      - "80:80" 
+    volumes: 
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf # Mount Nginx configuration file
+      - ./django_api_accretion/static:/vol/web/static  # Mount static files directory
+      - ./django_api_accretion/media:/vol/web/media 
+    depends_on:
+      - app 
 
 volumes: 
   postgres_data: 

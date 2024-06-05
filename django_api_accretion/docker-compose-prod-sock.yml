@@ -10,10 +10,13 @@ services:
       - ./django_api_accretion/static:/vol/web/static/
       - ./django_api_accretion/sockets:/django_api_accretion/sockets
     image: application:accretionbackend      
-    ## TCP connection ## 
-    ports:
-      - 8000:8000 # map port 8000 to 8000 
-    command: ["gunicorn", "--bind", "0.0.0.0:8000", "django_api_accretion.wsgi:application"] #bind all IP address 0.0.0.0 to the port 8000 
+    ## unix connection ##
+    # restart: always 
+    # command: ["gunicorn", "--bind", "unix:/django_api_accretion/django_api_accretion/app.sock", "django_api_accretion.wsgi:application"] #bind unix socket to django app in production 
+    command: ["gunicorn", "django_api_accretion.wsgi:application", "--bind", "unix:/django_api_accretion/sockets/app.sock", "--log-level", "debug", "--access-logfile", "-", "--error-logfile", "/django_api_accretion/django_api_accretion/gunicorn.error.log"]
+    # command: ["gunicorn", "--bind", "0.0.0.0:8000", "django_api_accretion.wsgi:application"] #bind all IP address 0.0.0.0 to the port 8000     
+    expose:
+      - "8000"
     env_file:
       - ./.env-prod
     environment:

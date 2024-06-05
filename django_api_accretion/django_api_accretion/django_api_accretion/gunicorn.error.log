@@ -1,427 +1,7 @@
-[2024-06-04 21:05:33 +0000] [1] [DEBUG] Current configuration:
+[2024-06-05 00:41:07 +0000] [1] [DEBUG] Current configuration:
   config: ./gunicorn.conf.py
   wsgi_app: None
-  bind: ['unix:/django_api_accretion/django_api_accretion/app.sock']
-  backlog: 2048
-  workers: 1
-  worker_class: sync
-  threads: 1
-  worker_connections: 1000
-  max_requests: 0
-  max_requests_jitter: 0
-  timeout: 30
-  graceful_timeout: 30
-  keepalive: 2
-  limit_request_line: 4094
-  limit_request_fields: 100
-  limit_request_field_size: 8190
-  reload: False
-  reload_engine: auto
-  reload_extra_files: []
-  spew: False
-  check_config: False
-  print_config: False
-  preload_app: False
-  sendfile: None
-  reuse_port: False
-  chdir: /django_api_accretion
-  daemon: False
-  raw_env: []
-  pidfile: None
-  worker_tmp_dir: None
-  user: 0
-  group: 0
-  umask: 0
-  initgroups: False
-  tmp_upload_dir: None
-  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
-  forwarded_allow_ips: ['127.0.0.1']
-  accesslog: -
-  disable_redirect_access_to_syslog: False
-  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
-  errorlog: /django_api_accretion/django_api_accretion/gunicorn.error.log
-  loglevel: debug
-  capture_output: False
-  logger_class: gunicorn.glogging.Logger
-  logconfig: None
-  logconfig_dict: {}
-  logconfig_json: None
-  syslog_addr: udp://localhost:514
-  syslog: False
-  syslog_prefix: None
-  syslog_facility: user
-  enable_stdio_inheritance: False
-  statsd_host: None
-  dogstatsd_tags: 
-  statsd_prefix: 
-  proc_name: None
-  default_proc_name: django_api_accretion.wsgi:application
-  pythonpath: None
-  paste: None
-  on_starting: <function OnStarting.on_starting at 0xffffaf228ee0>
-  on_reload: <function OnReload.on_reload at 0xffffaf229000>
-  when_ready: <function WhenReady.when_ready at 0xffffaf229120>
-  pre_fork: <function Prefork.pre_fork at 0xffffaf229240>
-  post_fork: <function Postfork.post_fork at 0xffffaf229360>
-  post_worker_init: <function PostWorkerInit.post_worker_init at 0xffffaf229480>
-  worker_int: <function WorkerInt.worker_int at 0xffffaf2295a0>
-  worker_abort: <function WorkerAbort.worker_abort at 0xffffaf2296c0>
-  pre_exec: <function PreExec.pre_exec at 0xffffaf2297e0>
-  pre_request: <function PreRequest.pre_request at 0xffffaf229900>
-  post_request: <function PostRequest.post_request at 0xffffaf229990>
-  child_exit: <function ChildExit.child_exit at 0xffffaf229ab0>
-  worker_exit: <function WorkerExit.worker_exit at 0xffffaf229bd0>
-  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0xffffaf229cf0>
-  on_exit: <function OnExit.on_exit at 0xffffaf229e10>
-  ssl_context: <function NewSSLContext.ssl_context at 0xffffaf229f30>
-  proxy_protocol: False
-  proxy_allow_ips: ['127.0.0.1']
-  keyfile: None
-  certfile: None
-  ssl_version: 2
-  cert_reqs: 0
-  ca_certs: None
-  suppress_ragged_eofs: True
-  do_handshake_on_connect: False
-  ciphers: None
-  raw_paste_global_conf: []
-  strip_header_spaces: False
-  permit_unconventional_http_method: False
-  permit_unconventional_http_version: False
-  casefold_http_method: False
-  header_map: drop
-  tolerate_dangerous_framing: False
-[2024-06-04 21:05:33 +0000] [1] [INFO] Starting gunicorn 22.0.0
-[2024-06-04 21:05:33 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:05:33 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:05:34 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:05:34 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:05:35 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:05:35 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:05:36 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:05:36 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:05:37 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:05:37 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:05:38 +0000] [1] [ERROR] Can't connect to /django_api_accretion/django_api_accretion/app.sock
-[2024-06-04 21:11:24 +0000] [1] [DEBUG] Current configuration:
-  config: ./gunicorn.conf.py
-  wsgi_app: None
-  bind: ['unix:/django_api_accretion/django_api_accretion/app.sock']
-  backlog: 2048
-  workers: 1
-  worker_class: sync
-  threads: 1
-  worker_connections: 1000
-  max_requests: 0
-  max_requests_jitter: 0
-  timeout: 30
-  graceful_timeout: 30
-  keepalive: 2
-  limit_request_line: 4094
-  limit_request_fields: 100
-  limit_request_field_size: 8190
-  reload: False
-  reload_engine: auto
-  reload_extra_files: []
-  spew: False
-  check_config: False
-  print_config: False
-  preload_app: False
-  sendfile: None
-  reuse_port: False
-  chdir: /django_api_accretion
-  daemon: False
-  raw_env: []
-  pidfile: None
-  worker_tmp_dir: None
-  user: 0
-  group: 0
-  umask: 0
-  initgroups: False
-  tmp_upload_dir: None
-  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
-  forwarded_allow_ips: ['127.0.0.1']
-  accesslog: -
-  disable_redirect_access_to_syslog: False
-  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
-  errorlog: /django_api_accretion/django_api_accretion/gunicorn.error.log
-  loglevel: debug
-  capture_output: False
-  logger_class: gunicorn.glogging.Logger
-  logconfig: None
-  logconfig_dict: {}
-  logconfig_json: None
-  syslog_addr: udp://localhost:514
-  syslog: False
-  syslog_prefix: None
-  syslog_facility: user
-  enable_stdio_inheritance: False
-  statsd_host: None
-  dogstatsd_tags: 
-  statsd_prefix: 
-  proc_name: None
-  default_proc_name: django_api_accretion.wsgi:application
-  pythonpath: None
-  paste: None
-  on_starting: <function OnStarting.on_starting at 0xffffa88c8ee0>
-  on_reload: <function OnReload.on_reload at 0xffffa88c9000>
-  when_ready: <function WhenReady.when_ready at 0xffffa88c9120>
-  pre_fork: <function Prefork.pre_fork at 0xffffa88c9240>
-  post_fork: <function Postfork.post_fork at 0xffffa88c9360>
-  post_worker_init: <function PostWorkerInit.post_worker_init at 0xffffa88c9480>
-  worker_int: <function WorkerInt.worker_int at 0xffffa88c95a0>
-  worker_abort: <function WorkerAbort.worker_abort at 0xffffa88c96c0>
-  pre_exec: <function PreExec.pre_exec at 0xffffa88c97e0>
-  pre_request: <function PreRequest.pre_request at 0xffffa88c9900>
-  post_request: <function PostRequest.post_request at 0xffffa88c9990>
-  child_exit: <function ChildExit.child_exit at 0xffffa88c9ab0>
-  worker_exit: <function WorkerExit.worker_exit at 0xffffa88c9bd0>
-  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0xffffa88c9cf0>
-  on_exit: <function OnExit.on_exit at 0xffffa88c9e10>
-  ssl_context: <function NewSSLContext.ssl_context at 0xffffa88c9f30>
-  proxy_protocol: False
-  proxy_allow_ips: ['127.0.0.1']
-  keyfile: None
-  certfile: None
-  ssl_version: 2
-  cert_reqs: 0
-  ca_certs: None
-  suppress_ragged_eofs: True
-  do_handshake_on_connect: False
-  ciphers: None
-  raw_paste_global_conf: []
-  strip_header_spaces: False
-  permit_unconventional_http_method: False
-  permit_unconventional_http_version: False
-  casefold_http_method: False
-  header_map: drop
-  tolerate_dangerous_framing: False
-[2024-06-04 21:11:24 +0000] [1] [INFO] Starting gunicorn 22.0.0
-[2024-06-04 21:11:24 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:11:24 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:11:25 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:11:25 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:11:26 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:11:26 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:11:27 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:11:27 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:11:28 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:11:28 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:11:29 +0000] [1] [ERROR] Can't connect to /django_api_accretion/django_api_accretion/app.sock
-[2024-06-04 21:13:29 +0000] [1] [DEBUG] Current configuration:
-  config: ./gunicorn.conf.py
-  wsgi_app: None
-  bind: ['unix:/django_api_accretion/django_api_accretion/app.sock']
-  backlog: 2048
-  workers: 1
-  worker_class: sync
-  threads: 1
-  worker_connections: 1000
-  max_requests: 0
-  max_requests_jitter: 0
-  timeout: 30
-  graceful_timeout: 30
-  keepalive: 2
-  limit_request_line: 4094
-  limit_request_fields: 100
-  limit_request_field_size: 8190
-  reload: False
-  reload_engine: auto
-  reload_extra_files: []
-  spew: False
-  check_config: False
-  print_config: False
-  preload_app: False
-  sendfile: None
-  reuse_port: False
-  chdir: /django_api_accretion
-  daemon: False
-  raw_env: []
-  pidfile: None
-  worker_tmp_dir: None
-  user: 0
-  group: 0
-  umask: 0
-  initgroups: False
-  tmp_upload_dir: None
-  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
-  forwarded_allow_ips: ['127.0.0.1']
-  accesslog: -
-  disable_redirect_access_to_syslog: False
-  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
-  errorlog: /django_api_accretion/django_api_accretion/gunicorn.error.log
-  loglevel: debug
-  capture_output: False
-  logger_class: gunicorn.glogging.Logger
-  logconfig: None
-  logconfig_dict: {}
-  logconfig_json: None
-  syslog_addr: udp://localhost:514
-  syslog: False
-  syslog_prefix: None
-  syslog_facility: user
-  enable_stdio_inheritance: False
-  statsd_host: None
-  dogstatsd_tags: 
-  statsd_prefix: 
-  proc_name: None
-  default_proc_name: django_api_accretion.wsgi:application
-  pythonpath: None
-  paste: None
-  on_starting: <function OnStarting.on_starting at 0xffffb3368ee0>
-  on_reload: <function OnReload.on_reload at 0xffffb3369000>
-  when_ready: <function WhenReady.when_ready at 0xffffb3369120>
-  pre_fork: <function Prefork.pre_fork at 0xffffb3369240>
-  post_fork: <function Postfork.post_fork at 0xffffb3369360>
-  post_worker_init: <function PostWorkerInit.post_worker_init at 0xffffb3369480>
-  worker_int: <function WorkerInt.worker_int at 0xffffb33695a0>
-  worker_abort: <function WorkerAbort.worker_abort at 0xffffb33696c0>
-  pre_exec: <function PreExec.pre_exec at 0xffffb33697e0>
-  pre_request: <function PreRequest.pre_request at 0xffffb3369900>
-  post_request: <function PostRequest.post_request at 0xffffb3369990>
-  child_exit: <function ChildExit.child_exit at 0xffffb3369ab0>
-  worker_exit: <function WorkerExit.worker_exit at 0xffffb3369bd0>
-  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0xffffb3369cf0>
-  on_exit: <function OnExit.on_exit at 0xffffb3369e10>
-  ssl_context: <function NewSSLContext.ssl_context at 0xffffb3369f30>
-  proxy_protocol: False
-  proxy_allow_ips: ['127.0.0.1']
-  keyfile: None
-  certfile: None
-  ssl_version: 2
-  cert_reqs: 0
-  ca_certs: None
-  suppress_ragged_eofs: True
-  do_handshake_on_connect: False
-  ciphers: None
-  raw_paste_global_conf: []
-  strip_header_spaces: False
-  permit_unconventional_http_method: False
-  permit_unconventional_http_version: False
-  casefold_http_method: False
-  header_map: drop
-  tolerate_dangerous_framing: False
-[2024-06-04 21:13:29 +0000] [1] [INFO] Starting gunicorn 22.0.0
-[2024-06-04 21:13:29 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:13:29 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:13:30 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:13:30 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:13:31 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:13:31 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:13:32 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:13:32 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:13:33 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:13:33 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:13:34 +0000] [1] [ERROR] Can't connect to /django_api_accretion/django_api_accretion/app.sock
-[2024-06-04 21:15:09 +0000] [1] [DEBUG] Current configuration:
-  config: ./gunicorn.conf.py
-  wsgi_app: None
-  bind: ['unix:/django_api_accretion/django_api_accretion/app.sock']
-  backlog: 2048
-  workers: 1
-  worker_class: sync
-  threads: 1
-  worker_connections: 1000
-  max_requests: 0
-  max_requests_jitter: 0
-  timeout: 30
-  graceful_timeout: 30
-  keepalive: 2
-  limit_request_line: 4094
-  limit_request_fields: 100
-  limit_request_field_size: 8190
-  reload: False
-  reload_engine: auto
-  reload_extra_files: []
-  spew: False
-  check_config: False
-  print_config: False
-  preload_app: False
-  sendfile: None
-  reuse_port: False
-  chdir: /django_api_accretion
-  daemon: False
-  raw_env: []
-  pidfile: None
-  worker_tmp_dir: None
-  user: 0
-  group: 0
-  umask: 0
-  initgroups: False
-  tmp_upload_dir: None
-  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
-  forwarded_allow_ips: ['127.0.0.1']
-  accesslog: -
-  disable_redirect_access_to_syslog: False
-  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
-  errorlog: /django_api_accretion/django_api_accretion/gunicorn.error.log
-  loglevel: debug
-  capture_output: False
-  logger_class: gunicorn.glogging.Logger
-  logconfig: None
-  logconfig_dict: {}
-  logconfig_json: None
-  syslog_addr: udp://localhost:514
-  syslog: False
-  syslog_prefix: None
-  syslog_facility: user
-  enable_stdio_inheritance: False
-  statsd_host: None
-  dogstatsd_tags: 
-  statsd_prefix: 
-  proc_name: None
-  default_proc_name: django_api_accretion.wsgi:application
-  pythonpath: None
-  paste: None
-  on_starting: <function OnStarting.on_starting at 0xffff883e8ee0>
-  on_reload: <function OnReload.on_reload at 0xffff883e9000>
-  when_ready: <function WhenReady.when_ready at 0xffff883e9120>
-  pre_fork: <function Prefork.pre_fork at 0xffff883e9240>
-  post_fork: <function Postfork.post_fork at 0xffff883e9360>
-  post_worker_init: <function PostWorkerInit.post_worker_init at 0xffff883e9480>
-  worker_int: <function WorkerInt.worker_int at 0xffff883e95a0>
-  worker_abort: <function WorkerAbort.worker_abort at 0xffff883e96c0>
-  pre_exec: <function PreExec.pre_exec at 0xffff883e97e0>
-  pre_request: <function PreRequest.pre_request at 0xffff883e9900>
-  post_request: <function PostRequest.post_request at 0xffff883e9990>
-  child_exit: <function ChildExit.child_exit at 0xffff883e9ab0>
-  worker_exit: <function WorkerExit.worker_exit at 0xffff883e9bd0>
-  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0xffff883e9cf0>
-  on_exit: <function OnExit.on_exit at 0xffff883e9e10>
-  ssl_context: <function NewSSLContext.ssl_context at 0xffff883e9f30>
-  proxy_protocol: False
-  proxy_allow_ips: ['127.0.0.1']
-  keyfile: None
-  certfile: None
-  ssl_version: 2
-  cert_reqs: 0
-  ca_certs: None
-  suppress_ragged_eofs: True
-  do_handshake_on_connect: False
-  ciphers: None
-  raw_paste_global_conf: []
-  strip_header_spaces: False
-  permit_unconventional_http_method: False
-  permit_unconventional_http_version: False
-  casefold_http_method: False
-  header_map: drop
-  tolerate_dangerous_framing: False
-[2024-06-04 21:15:09 +0000] [1] [INFO] Starting gunicorn 22.0.0
-[2024-06-04 21:15:09 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:15:09 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:15:10 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:15:10 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:15:11 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:15:11 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:15:12 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:15:12 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:15:13 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 21:15:13 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 21:15:15 +0000] [1] [ERROR] Can't connect to /django_api_accretion/django_api_accretion/app.sock
-[2024-06-04 22:18:54 +0000] [1] [DEBUG] Current configuration:
-  config: ./gunicorn.conf.py
-  wsgi_app: None
-  bind: ['unix:/django_api_accretion/django_api_accretion/app.sock']
+  bind: ['unix:/django_api_accretion/sockets/app.sock']
   backlog: 2048
   workers: 1
   worker_class: sync
@@ -478,22 +58,22 @@
   default_proc_name: django_api_accretion.wsgi:application
   pythonpath: None
   paste: None
-  on_starting: <function OnStarting.on_starting at 0xffff88de4ee0>
-  on_reload: <function OnReload.on_reload at 0xffff88de5000>
-  when_ready: <function WhenReady.when_ready at 0xffff88de5120>
-  pre_fork: <function Prefork.pre_fork at 0xffff88de5240>
-  post_fork: <function Postfork.post_fork at 0xffff88de5360>
-  post_worker_init: <function PostWorkerInit.post_worker_init at 0xffff88de5480>
-  worker_int: <function WorkerInt.worker_int at 0xffff88de55a0>
-  worker_abort: <function WorkerAbort.worker_abort at 0xffff88de56c0>
-  pre_exec: <function PreExec.pre_exec at 0xffff88de57e0>
-  pre_request: <function PreRequest.pre_request at 0xffff88de5900>
-  post_request: <function PostRequest.post_request at 0xffff88de5990>
-  child_exit: <function ChildExit.child_exit at 0xffff88de5ab0>
-  worker_exit: <function WorkerExit.worker_exit at 0xffff88de5bd0>
-  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0xffff88de5cf0>
-  on_exit: <function OnExit.on_exit at 0xffff88de5e10>
-  ssl_context: <function NewSSLContext.ssl_context at 0xffff88de5f30>
+  on_starting: <function OnStarting.on_starting at 0xffff85df4ee0>
+  on_reload: <function OnReload.on_reload at 0xffff85df5000>
+  when_ready: <function WhenReady.when_ready at 0xffff85df5120>
+  pre_fork: <function Prefork.pre_fork at 0xffff85df5240>
+  post_fork: <function Postfork.post_fork at 0xffff85df5360>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0xffff85df5480>
+  worker_int: <function WorkerInt.worker_int at 0xffff85df55a0>
+  worker_abort: <function WorkerAbort.worker_abort at 0xffff85df56c0>
+  pre_exec: <function PreExec.pre_exec at 0xffff85df57e0>
+  pre_request: <function PreRequest.pre_request at 0xffff85df5900>
+  post_request: <function PostRequest.post_request at 0xffff85df5990>
+  child_exit: <function ChildExit.child_exit at 0xffff85df5ab0>
+  worker_exit: <function WorkerExit.worker_exit at 0xffff85df5bd0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0xffff85df5cf0>
+  on_exit: <function OnExit.on_exit at 0xffff85df5e10>
+  ssl_context: <function NewSSLContext.ssl_context at 0xffff85df5f30>
   proxy_protocol: False
   proxy_allow_ips: ['127.0.0.1']
   keyfile: None
@@ -511,22 +91,22 @@
   casefold_http_method: False
   header_map: drop
   tolerate_dangerous_framing: False
-[2024-06-04 22:18:54 +0000] [1] [INFO] Starting gunicorn 22.0.0
-[2024-06-04 22:18:54 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 22:18:54 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 22:18:55 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 22:18:55 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 22:18:56 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 22:18:56 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 22:18:57 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 22:18:57 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 22:18:58 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 22:18:58 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 22:18:59 +0000] [1] [ERROR] Can't connect to /django_api_accretion/django_api_accretion/app.sock
-[2024-06-04 22:28:39 +0000] [1] [DEBUG] Current configuration:
+[2024-06-05 00:41:07 +0000] [1] [INFO] Starting gunicorn 22.0.0
+[2024-06-05 00:41:07 +0000] [1] [DEBUG] connection to /django_api_accretion/sockets/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/sockets/app.sock'
+[2024-06-05 00:41:07 +0000] [1] [ERROR] Retrying in 1 second.
+[2024-06-05 00:41:08 +0000] [1] [DEBUG] connection to /django_api_accretion/sockets/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/sockets/app.sock'
+[2024-06-05 00:41:08 +0000] [1] [ERROR] Retrying in 1 second.
+[2024-06-05 00:41:09 +0000] [1] [DEBUG] connection to /django_api_accretion/sockets/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/sockets/app.sock'
+[2024-06-05 00:41:09 +0000] [1] [ERROR] Retrying in 1 second.
+[2024-06-05 00:41:10 +0000] [1] [DEBUG] connection to /django_api_accretion/sockets/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/sockets/app.sock'
+[2024-06-05 00:41:10 +0000] [1] [ERROR] Retrying in 1 second.
+[2024-06-05 00:41:11 +0000] [1] [DEBUG] connection to /django_api_accretion/sockets/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/sockets/app.sock'
+[2024-06-05 00:41:11 +0000] [1] [ERROR] Retrying in 1 second.
+[2024-06-05 00:41:12 +0000] [1] [ERROR] Can't connect to /django_api_accretion/sockets/app.sock
+[2024-06-05 00:42:26 +0000] [1] [DEBUG] Current configuration:
   config: ./gunicorn.conf.py
   wsgi_app: None
-  bind: ['unix:/django_api_accretion/django_api_accretion/app.sock']
+  bind: ['unix:/django_api_accretion/sockets/app.sock']
   backlog: 2048
   workers: 1
   worker_class: sync
@@ -583,22 +163,22 @@
   default_proc_name: django_api_accretion.wsgi:application
   pythonpath: None
   paste: None
-  on_starting: <function OnStarting.on_starting at 0xffff837b4ee0>
-  on_reload: <function OnReload.on_reload at 0xffff837b5000>
-  when_ready: <function WhenReady.when_ready at 0xffff837b5120>
-  pre_fork: <function Prefork.pre_fork at 0xffff837b5240>
-  post_fork: <function Postfork.post_fork at 0xffff837b5360>
-  post_worker_init: <function PostWorkerInit.post_worker_init at 0xffff837b5480>
-  worker_int: <function WorkerInt.worker_int at 0xffff837b55a0>
-  worker_abort: <function WorkerAbort.worker_abort at 0xffff837b56c0>
-  pre_exec: <function PreExec.pre_exec at 0xffff837b57e0>
-  pre_request: <function PreRequest.pre_request at 0xffff837b5900>
-  post_request: <function PostRequest.post_request at 0xffff837b5990>
-  child_exit: <function ChildExit.child_exit at 0xffff837b5ab0>
-  worker_exit: <function WorkerExit.worker_exit at 0xffff837b5bd0>
-  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0xffff837b5cf0>
-  on_exit: <function OnExit.on_exit at 0xffff837b5e10>
-  ssl_context: <function NewSSLContext.ssl_context at 0xffff837b5f30>
+  on_starting: <function OnStarting.on_starting at 0xffffabec8ee0>
+  on_reload: <function OnReload.on_reload at 0xffffabec9000>
+  when_ready: <function WhenReady.when_ready at 0xffffabec9120>
+  pre_fork: <function Prefork.pre_fork at 0xffffabec9240>
+  post_fork: <function Postfork.post_fork at 0xffffabec9360>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0xffffabec9480>
+  worker_int: <function WorkerInt.worker_int at 0xffffabec95a0>
+  worker_abort: <function WorkerAbort.worker_abort at 0xffffabec96c0>
+  pre_exec: <function PreExec.pre_exec at 0xffffabec97e0>
+  pre_request: <function PreRequest.pre_request at 0xffffabec9900>
+  post_request: <function PostRequest.post_request at 0xffffabec9990>
+  child_exit: <function ChildExit.child_exit at 0xffffabec9ab0>
+  worker_exit: <function WorkerExit.worker_exit at 0xffffabec9bd0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0xffffabec9cf0>
+  on_exit: <function OnExit.on_exit at 0xffffabec9e10>
+  ssl_context: <function NewSSLContext.ssl_context at 0xffffabec9f30>
   proxy_protocol: False
   proxy_allow_ips: ['127.0.0.1']
   keyfile: None
@@ -616,15 +196,15 @@
   casefold_http_method: False
   header_map: drop
   tolerate_dangerous_framing: False
-[2024-06-04 22:28:39 +0000] [1] [INFO] Starting gunicorn 22.0.0
-[2024-06-04 22:28:39 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 22:28:39 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 22:28:40 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 22:28:40 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 22:28:41 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 22:28:41 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 22:28:42 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 22:28:42 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 22:28:43 +0000] [1] [DEBUG] connection to /django_api_accretion/django_api_accretion/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/django_api_accretion/app.sock'
-[2024-06-04 22:28:43 +0000] [1] [ERROR] Retrying in 1 second.
-[2024-06-04 22:28:44 +0000] [1] [ERROR] Can't connect to /django_api_accretion/django_api_accretion/app.sock
+[2024-06-05 00:42:26 +0000] [1] [INFO] Starting gunicorn 22.0.0
+[2024-06-05 00:42:26 +0000] [1] [DEBUG] connection to /django_api_accretion/sockets/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/sockets/app.sock'
+[2024-06-05 00:42:26 +0000] [1] [ERROR] Retrying in 1 second.
+[2024-06-05 00:42:27 +0000] [1] [DEBUG] connection to /django_api_accretion/sockets/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/sockets/app.sock'
+[2024-06-05 00:42:27 +0000] [1] [ERROR] Retrying in 1 second.
+[2024-06-05 00:42:28 +0000] [1] [DEBUG] connection to /django_api_accretion/sockets/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/sockets/app.sock'
+[2024-06-05 00:42:28 +0000] [1] [ERROR] Retrying in 1 second.
+[2024-06-05 00:42:29 +0000] [1] [DEBUG] connection to /django_api_accretion/sockets/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/sockets/app.sock'
+[2024-06-05 00:42:29 +0000] [1] [ERROR] Retrying in 1 second.
+[2024-06-05 00:42:31 +0000] [1] [DEBUG] connection to /django_api_accretion/sockets/app.sock failed: [Errno 22] Invalid argument: '/django_api_accretion/sockets/app.sock'
+[2024-06-05 00:42:31 +0000] [1] [ERROR] Retrying in 1 second.
+[2024-06-05 00:42:32 +0000] [1] [ERROR] Can't connect to /django_api_accretion/sockets/app.sock

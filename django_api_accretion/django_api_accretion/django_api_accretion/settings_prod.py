@@ -8,11 +8,11 @@ print(f"=====Starting Django in {os.getenv('ENVIRONMENT')} environment====")
 
 #define allowed host like accretion.life
 ALLOWED_HOSTS = [
-    "backend-1.accretion.life", 
-    "http://127.0.0.1", # for local testing 
-    "localhost", 
-    "http://3.147.46.192", # for EC2 instance 
-    "unix:/django_api_accretion/django_api_accretion/app.sock", # for unix socket connection
+    # "backend-1.accretion.life", 
+    "127.0.0.1", # for local testing 
+    # "localhost", 
+    "3.147.46.192", # for EC2 instance 
+    # "unix:/django_api_accretion/sockets/app.sock", # for unix socket connection
 ] 
 
 DATABASES = {

@@ -30,9 +30,11 @@ RUN apt-get update && \
     # create static file directory and grant permission 
     mkdir -p /vol/web/static /vol/web/media && \
     chmod -R 755 /vol && \    
+    # create socket directory and grant permission 
+    mkdir -p /django_api_accretion/sockets && \ 
+    chmod -R 755 /django_api_accretion && \
     # change ownership from root to django user
     chown -R django /django_api_accretion /vol
-
 
 ## change user to django instead of default root user 
 USER django
@@ -42,7 +44,6 @@ COPY ./scripts/entrypoint.sh /entrypoint.sh
 
 # Ensure the entrypoint script is executable
 # RUN chmod +x /entrypoint.sh
-
 
 # Expose the port the app runs on
 # EXPOSE 8000

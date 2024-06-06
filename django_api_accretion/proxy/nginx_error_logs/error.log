@@ -1,2 +1,2 @@
-2024/06/06 20:11:58 [emerg] 1#1: unknown "ssl_certificate" variable
-2024/06/06 20:12:40 [emerg] 1#1: unknown "ssl_certificate_key" variable
+2024/06/06 20:38:25 [emerg] 1#1: unknown "ssl_certificate" variable
+2024/06/06 20:39:01 [emerg] 1#1: invalid variable name in /etc/nginx/nginx.conf:78

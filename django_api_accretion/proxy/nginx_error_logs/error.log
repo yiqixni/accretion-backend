@@ -1,1 +1,2 @@
-2024/06/06 06:18:29 [emerg] 1#1: open() "/var/run/nginx.pid" failed (13: Permission denied)
+2024/06/06 20:11:58 [emerg] 1#1: unknown "ssl_certificate" variable
+2024/06/06 20:12:40 [emerg] 1#1: unknown "ssl_certificate_key" variable

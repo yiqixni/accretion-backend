@@ -1,4 +1,4 @@
-# docker-compose for production environment 
+# docker-compose for staging before production environment 
 
 version: "3.8" 
 services:  
@@ -8,12 +8,10 @@ services:
       - ./django_api_accretion:/django_api_accretion/ # map the project folder to the docker image ## only for development 
       - media_volume:/vol/web/media/  
       - static_volume:/vol/web/static/      
-    image: application:accretionbackend      
-    ## TCP connection ## 
-    ports:
+    image: application:accretionbackend   
+    restart: always   
+    ports: ## bind gunicorn with django app with TCP connection ## 
       - 8000:8000 # map port 8000 to 8000 
-    # expose:
-    #   - "8000"
     command: ["gunicorn", "--bind", "0.0.0.0:8000", "django_api_accretion.wsgi:application"] #bind all IP address 0.0.0.0 to the port 8000 
     env_file:
       - ./.env-prod
@@ -43,8 +41,8 @@ services:
     image: nginx:latest 
     build: 
       context: ./proxy
-      dockerfile: Dockerfile.nginx
-    # restart: always
+      dockerfile: Dockerfile.nginx.stage
+    restart: always
     ports: 
       - "80:80" 
       - "443:443"

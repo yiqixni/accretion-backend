@@ -7,11 +7,11 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 USER root
 
-
 # Ensure the /vol/web directory exists and is owned by www-data
-RUN mkdir -p /vol/web/static /vol/web/media /var/log/nginx /var/cache/nginx && \ 
-    chmod 777 /var/run /vol/web/media /vol/web/static && \
-    chown -R www-data:www-data /vol/web/media /vol/web/static && \    
+RUN mkdir -p /vol/static /vol/media /var/log/nginx /var/cache/nginx && \ 
+    chmod 777 /var/run && \
+    chmod -R 755 /vol && \
+    chown -R www-data /vol && \    
     chown -R www-data:www-data /var
 
 USER www-data 
@@ -19,7 +19,7 @@ USER www-data
 # Expose the port the app runs on
 EXPOSE 80
 
-VOLUME vol/web/static vol/web/media
+VOLUME vol/static vol/media
 
 # Start Nginx service
 CMD ["nginx", "-g", "daemon off;"]

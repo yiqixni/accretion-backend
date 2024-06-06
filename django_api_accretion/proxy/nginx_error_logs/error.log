@@ -1,3 +1,0 @@
-2024/06/06 02:16:47 [emerg] 1#1: open() "/var/run/nginx.pid" failed (13: Permission denied)
-2024/06/06 02:17:52 [emerg] 1#1: open() "/var/run/nginx.pid" failed (13: Permission denied)
-2024/06/06 02:18:44 [emerg] 1#1: open() "/var/run/nginx.pid" failed (13: Permission denied)

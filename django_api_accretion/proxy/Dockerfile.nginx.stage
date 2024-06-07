@@ -20,7 +20,7 @@ USER www-data
 EXPOSE 80
 EXPOSE 443 
 
-VOLUME vol/static vol/media
+VOLUME /vol/static /vol/media
 
 # Start Nginx service
 CMD ["nginx", "-g", "daemon off;"]

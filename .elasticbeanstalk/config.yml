@@ -1,5 +1,0 @@
-branch-defaults:
-  database-attom-visual:
-    environment: null
-global:
-  profile: null

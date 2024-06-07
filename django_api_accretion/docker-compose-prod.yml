@@ -42,7 +42,7 @@ services:
     build: 
       context: ./proxy
       dockerfile: Dockerfile.nginx.prod
-    # restart: always
+    restart: unless-stopped
     # environment:
       # - DOMAIN=${DOMAIN}
     ports: 

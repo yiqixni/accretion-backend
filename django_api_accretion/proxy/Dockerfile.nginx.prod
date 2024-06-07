@@ -5,6 +5,12 @@ LABEL maintainer="accretion.life"
 # Copy Nginx configuration file to the container
 COPY nginx.conf.prod /etc/nginx/nginx.conf
 
+# Copy entrypoint script into the container
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+
+# Make entrypoint script executable
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
 USER root
 
 # Ensure the /vol/web directory exists and is owned by www-data
@@ -22,11 +28,7 @@ EXPOSE 443
 
 VOLUME /vol/static /vol/media /var/log/nginx
 
-# Copy entrypoint script into the container
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
-# Make entrypoint script executable
-RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Set entrypoint
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

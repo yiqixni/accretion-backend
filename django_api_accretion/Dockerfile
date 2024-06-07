@@ -35,8 +35,7 @@ RUN apt-get update && \
     chmod -R 755 /django_api_accretion && \
     # change ownership from root to django user
     chown -R django /django_api_accretion /vol 
-    # for Nginx server change ownership from root to www-data user for /vol/web 
-    # chown -R www-data:www-data /vol/web
+
 
 ## change user to django instead of default root user 
 USER django

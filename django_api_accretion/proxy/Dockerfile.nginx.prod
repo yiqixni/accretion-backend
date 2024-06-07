@@ -8,7 +8,7 @@ COPY nginx.conf.prod /etc/nginx/nginx.conf
 USER root
 
 # Ensure the /vol/web directory exists and is owned by www-data
-RUN mkdir -p /vol/static /vol/media /var/log/nginx /var/cache/nginx /etc/letsencrypt && \ 
+RUN mkdir -p                    /vol/static /vol/media /var/log/nginx /var/cache/nginx /etc/letsencrypt && \ 
     chmod 777                   /var/run && \
     chmod -R 755                /vol/static /vol/media /etc/letsencrypt /var/log/nginx && \
     chown -R www-data:www-data  /vol/static /vol/media /etc/letsencrypt /var/log/nginx && \        
@@ -20,7 +20,7 @@ USER www-data
 EXPOSE 80
 EXPOSE 443 
 
-VOLUME /vol/static /vol/media
+VOLUME /vol/static /vol/media /var/log/nginx
 
 # Start Nginx service
 CMD ["nginx", "-g", "daemon off;"]

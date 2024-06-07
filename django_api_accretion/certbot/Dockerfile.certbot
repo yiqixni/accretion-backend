@@ -3,12 +3,11 @@ FROM certbot/certbot
 LABEL maintainer="accretion.life"
 
 # Install openssl and certbot-nginx
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN apk update && \
+    apk add --no-cache \
     openssl \
     certbot-nginx && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/cache/apk/*
 
 # Create necessary directories
 RUN mkdir -p /etc/letsencrypt /data/letsencrypt /var/log/letsencrypt

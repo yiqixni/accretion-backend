@@ -1,10 +1,12 @@
 #!/bin/sh
 
-echo "make directory and grant permission for /var/log/nginx..."
+echo "create error.log and grant permission for /var/log/nginx/error.log..."
 
-# Create log directory and set permissions
-mkdir -p /var/log/nginx
-chown -R www-data:www-data /var/log/nginx
+# Create error.log file
+touch /var/log/nginx/error.log
+
+# Change ownership of the log file
+chown www-data:www-data /var/log/nginx/error.log
 
 echo "start nginx service entrypoint.sh..."
 

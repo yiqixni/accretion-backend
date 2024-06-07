@@ -31,4 +31,7 @@ VOLUME /vol/static /vol/media /var/log/nginx
 
 
 # Set entrypoint
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+# ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+# # Start Nginx service
+CMD ["nginx", "-g", "daemon off;"]

@@ -6,7 +6,8 @@ LABEL maintainer="accretion.life"
 RUN apk update && \
     apk add --no-cache \
     openssl \
-    certbot-nginx && \
+    certbot-nginx \
+    nginx && \
     rm -rf /var/cache/apk/*
 
 # Create necessary directories

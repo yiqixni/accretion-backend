@@ -2,6 +2,9 @@ FROM nginx:latest
 
 LABEL maintainer="accretion.life" 
 
+# Set environment variables
+ENV DOMAIN=backend-1.accretion.life
+
 # Copy Nginx configuration file to the container
 COPY nginx.conf.prod /etc/nginx/nginx.conf
 # COPY nginx.conf.prod /etc/nginx/conf.d/default.conf

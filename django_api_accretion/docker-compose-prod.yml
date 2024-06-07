@@ -37,26 +37,26 @@ services:
       volumes:
         - postgres_data:/var/lib/postgresql/data 
   
-  nginx: 
-    image: nginx:latest 
-    build: 
-      context: ./proxy
-      dockerfile: Dockerfile.nginx.prod
-    # restart: always
-    environment:
-      - DOMAIN=${DOMAIN}
-    ports: 
-      - "80:80" 
-      - "443:443"
-    volumes:       
-      - ./proxy/nginx_error_logs:/var/log/nginx
-      - static_volume:/vol/static/  # Mount static files directory
-      - media_volume:/vol/media/ 
-      - certs:/etc/letsencrypt # map the prod certs to nginx container    
-      - certs-data:/data/letsencrypt
-    depends_on:
-      - app 
-      - certbot 
+  # nginx: 
+  #   image: nginx:latest 
+  #   build: 
+  #     context: ./proxy
+  #     dockerfile: Dockerfile.nginx.prod
+  #   # restart: always
+  #   environment:
+  #     - DOMAIN=${DOMAIN}
+  #   ports: 
+  #     - "80:80" 
+  #     - "443:443"
+  #   volumes:       
+  #     - ./proxy/nginx_error_logs:/var/log/nginx
+  #     - static_volume:/vol/static/  # Mount static files directory
+  #     - media_volume:/vol/media/ 
+  #     - certs:/etc/letsencrypt # map the prod certs to nginx container    
+  #     - certs-data:/data/letsencrypt
+  #   depends_on:
+  #     - app 
+  #     - certbot 
 
   certbot:
     build:

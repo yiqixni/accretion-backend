@@ -22,5 +22,14 @@ EXPOSE 443
 
 VOLUME /vol/static /vol/media /var/log/nginx
 
-# Start Nginx service
-CMD ["nginx", "-g", "daemon off;"]
+# Copy entrypoint script into the container
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+
+# Make entrypoint script executable
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Set entrypoint
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+# # Start Nginx service
+# CMD ["nginx", "-g", "daemon off;"]

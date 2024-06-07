@@ -1,15 +1,23 @@
 FROM certbot/certbot
 
-FROM certbot/certbot
-
 LABEL maintainer="accretion.life"
 
-# Create directory for certs
-RUN mkdir -p /etc/letsencrypt
-RUN mkdir -p /data/letsencrypt
+# Create necessary directories
+RUN mkdir -p /etc/letsencrypt /data/letsencrypt /var/log/letsencrypt
 
+# Define volumes to share certificates and logs with the host
 VOLUME /etc/letsencrypt
 VOLUME /data/letsencrypt
+VOLUME /var/log/letsencrypt
 
+# Copy necessary files for SSL configuration
+COPY options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf
+COPY ssl-dhparams.pem /etc/letsencrypt/ssl-dhparams.pem
 
-ENTRYPOINT ["sh", "-c", "trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done"]
+# Define entrypoint script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Run the entrypoint script
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+

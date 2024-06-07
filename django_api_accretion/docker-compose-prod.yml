@@ -46,8 +46,7 @@ services:
     ports: 
       - "80:80" 
       - "443:443"
-    volumes: 
-      # - ./proxy/nginx.conf:/etc/nginx/nginx.conf # Mount Nginx configuration file
+    volumes:       
       - ./proxy/nginx_error_logs:/var/log/nginx
       - static_volume:/vol/static/  # Mount static files directory
       - media_volume:/vol/media/ 
@@ -61,6 +60,9 @@ services:
     build:
       context: ./certbot
       dockerfile: Dockerfile.certbot
+    environment:
+      - DOMAIN=backend-1.accretion.life
+      - CERTBOTEMAIL=yiqinix@gmail.com
     volumes:
       - certs:/etc/letsencrypt
       - certs-data:/data/letsencrypt

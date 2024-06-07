@@ -7,20 +7,12 @@ COPY nginx.conf.prod /etc/nginx/nginx.conf
 
 USER root
 
-# # Ensure the /vol/web directory exists and is owned by www-data
-# RUN mkdir -p /vol/static /vol/media /var/log/nginx /var/cache/nginx && \ 
-#     chmod 777 /var/run && \
-#     chmod -R 755 /vol && \
-#     chown -R www-data /vol && \    
-#     chown -R www-data:www-data /var
 # Ensure the /vol/web directory exists and is owned by www-data
-RUN mkdir -p /vol/static /vol/media /var/log/nginx /var/cache/nginx && \ 
-    chmod 777 /var/run && \
-    chmod -R 755 /vol && \
-    chown -R www-data /vol && \    
-    chown -R www-data:www-data /var/log/nginx && \
-    chown -R www-data:www-data /var/cache/nginx && \
-    chmod -R 755 /var/log/nginx
+RUN mkdir -p /vol/static /vol/media /var/log/nginx /var/cache/nginx /etc/letsencrypt && \ 
+    chmod 777                   /var/run && \
+    chmod -R 755                /vol/static /vol/media /etc/letsencrypt /var/log/nginx && \
+    chown -R www-data:www-data  /vol/static /vol/media /etc/letsencrypt /var/log/nginx && \        
+    chown -R www-data:www-data  /var/cache/nginx     
 
 USER www-data 
 

@@ -37,37 +37,36 @@ services:
       volumes:
         - postgres_data:/var/lib/postgresql/data 
   
-  # nginx: 
-  #   image: nginx:latest 
-  #   build: 
-  #     context: ./proxy
-  #     dockerfile: Dockerfile.nginx.prod
-  #   # restart: always
-  #   environment:
-  #     - DOMAIN=${DOMAIN}
-  #   ports: 
-  #     - "80:80" 
-  #     - "443:443"
-  #   volumes:       
-  #     - ./proxy/nginx_error_logs:/var/log/nginx
-  #     - static_volume:/vol/static/  # Mount static files directory
-  #     - media_volume:/vol/media/ 
-  #     - certs:/etc/letsencrypt # map the prod certs to nginx container    
-  #     - certs-data:/data/letsencrypt
-  #   depends_on:
-  #     - app 
-  #     - certbot 
-
-  certbot:
-    build:
-      context: ./certbot
-      dockerfile: Dockerfile.certbot
+  nginx: 
+    image: nginx:latest 
+    build: 
+      context: ./proxy
+      dockerfile: Dockerfile.nginx.prod
+    # restart: always
     environment:
       - DOMAIN=${DOMAIN}
-      - CERTBOT_EMAIL=${CERTBOT_EMAIL}
-    volumes:
-      - certs:/etc/letsencrypt
-      - certs-data:/data/letsencrypt
+    ports: 
+      - "80:80" 
+      - "443:443"
+    volumes:       
+      - ./proxy/nginx_error_logs:/var/log/nginx
+      - static_volume:/vol/static/  # Mount static files directory
+      - media_volume:/vol/media/ 
+      - /etc/letsencrypt:/etc/letsencrypt # map the prod certs to nginx container          
+    depends_on:
+      - app 
+      # - certbot 
+
+  # certbot:
+  #   build:
+  #     context: ./certbot
+  #     dockerfile: Dockerfile.certbot
+  #   environment:
+  #     - DOMAIN=${DOMAIN}
+  #     - CERTBOT_EMAIL=${CERTBOT_EMAIL}
+  #   volumes:
+  #     - certs:/etc/letsencrypt
+  #     - certs-data:/data/letsencrypt
 
 ## create volumes for database, static, media files
 ## volumes are automatically managed by Docker, not related to the host machine 
@@ -75,5 +74,3 @@ volumes:
   postgres_data: 
   static_volume: 
   media_volume: 
-  certs:
-  certs-data:

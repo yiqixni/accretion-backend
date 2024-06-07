@@ -1,5 +1,8 @@
 #!/bin/sh
 
+echo "Checking Nginx version..."
+nginx -v 2>&1
+
 # Check if we have existing certificates
 if [ ! -f /etc/letsencrypt/live/$DOMAIN/fullchain.pem ]; then
   echo "Certificates not found, creating new ones..."

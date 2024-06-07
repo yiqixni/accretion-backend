@@ -2,7 +2,7 @@ events {}
 
 http {
     ## configure nginx logs 
-    error_log /var/log/nginx/error.log;
+    error_log /var/log/nginx/error.log debug;    
     access_log /var/log/nginx/access.log;
     
     ## Define upstream gunicorn server 

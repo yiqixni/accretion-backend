@@ -9,7 +9,7 @@ services:
       - media_volume:/vol/web/media/  
       - static_volume:/vol/web/static/      
     image: application:accretionbackend  
-    restart: always    
+    # restart: always    
     ports: ## bind gunicorn with django app with TCP connection ## 
       - 8000:8000 # map port 8000 to 8000 
     command: ["gunicorn", "--bind", "0.0.0.0:8000", "django_api_accretion.wsgi:application"] #bind all IP address 0.0.0.0 to the port 8000 
@@ -42,7 +42,7 @@ services:
     build: 
       context: ./proxy
       dockerfile: Dockerfile.nginx.prod
-    restart: always
+    # restart: always
     ports: 
       - "80:80" 
       - "443:443"

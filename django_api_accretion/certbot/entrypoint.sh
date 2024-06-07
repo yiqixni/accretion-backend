@@ -26,8 +26,8 @@ certbot --version 2>&1
 #   openssl dhparam -out /etc/letsencrypt/ssl-dhparams.pem 2048
 # fi
 
-# # Start the certbot renew process in the background
-# while :; do
-#   certbot renew
-#   sleep 12h # Sleep for 12 hours before checking again
-# done &
+# Start the certbot renew process in the background
+while :; do
+  certbot renew
+  sleep 12h # Sleep for 12 hours before checking again
+done &

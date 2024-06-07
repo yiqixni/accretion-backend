@@ -7,8 +7,8 @@ http {
     
     ## Define upstream gunicorn server 
     upstream app_server {
-        # server app:8000;
-        server 3.135.82.163:8000;
+        server app:8000;
+        # server 3.135.82.163:8000;
     }
 
     ## redirects all requests to HTTPS  

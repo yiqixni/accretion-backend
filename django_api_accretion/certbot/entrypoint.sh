@@ -3,7 +3,7 @@
 echo "Checking Nginx version..."
 nginx -v 2>&1
 echo "Checking Certbot version..."
-certbot -v 2>&1
+certbot --version 2>&1
 
 # Check if we have existing certificates
 if [ ! -f /etc/letsencrypt/live/$DOMAIN/fullchain.pem ]; then

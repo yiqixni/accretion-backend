@@ -7,8 +7,8 @@ RUN apk update && \
     apk add --no-cache \
     certbot \
     nginx \ 
-    # openssl \    
-    # certbot-nginx && \
+    openssl \    
+    certbot-nginx && \
     rm -rf /var/cache/apk/*
 
 # Create necessary directories

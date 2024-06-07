@@ -2,15 +2,14 @@
 
 echo "Checking Nginx version..."
 nginx -v 2>&1
+echo "Checking Certbot version..."
+certbot -v 2>&1
 
 # Check if we have existing certificates
 if [ ! -f /etc/letsencrypt/live/$DOMAIN/fullchain.pem ]; then
-  echo "Certificates not found, creating new ones..."
-  # certbot certonly --nginx -d $DOMAIN --email $CERTBOT_EMAIL --agree-tos --no-eff-email
-  # Run certbot and capture the output
-  CERTBOT_OUTPUT=$(certbot certonly --nginx -d $DOMAIN --email $CERTBOT_EMAIL --agree-tos --no-eff-email 2>&1)
-  # Print the certbot output
-  echo "$CERTBOT_OUTPUT"
+  echo "Certificates not found, creating new ones at /etc/letsencrypt/live/$DOMAIN/fullchain.pem with email $CERTBOT_EMAIL ..."
+  certbot certonly --nginx -d $DOMAIN --email $CERTBOT_EMAIL --agree-tos --no-eff-email  
+  echo "End of certbot creation..."
 else
   echo "Certificates found, skipping generation."
 fi

@@ -43,8 +43,8 @@ services:
       context: ./proxy
       dockerfile: Dockerfile.nginx.prod
     # restart: always
-    environment:
-      - DOMAIN=${DOMAIN}
+    # environment:
+      # - DOMAIN=${DOMAIN}
     ports: 
       - "80:80" 
       - "443:443"

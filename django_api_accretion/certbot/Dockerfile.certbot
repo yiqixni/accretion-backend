@@ -1,3 +1,15 @@
 FROM certbot/certbot
 
+FROM certbot/certbot
+
+LABEL maintainer="accretion.life"
+
+# Create directory for certs
+RUN mkdir -p /etc/letsencrypt
+RUN mkdir -p /data/letsencrypt
+
+VOLUME /etc/letsencrypt
+VOLUME /data/letsencrypt
+
+
 ENTRYPOINT ["sh", "-c", "trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done"]

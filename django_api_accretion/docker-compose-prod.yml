@@ -43,8 +43,6 @@ services:
       context: ./proxy
       dockerfile: Dockerfile.nginx.prod
     restart: unless-stopped
-    # environment:
-      # - DOMAIN=${DOMAIN}
     ports: 
       - "80:80" 
       - "443:443"
@@ -55,20 +53,9 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt # map the prod certs to nginx container          
     depends_on:
       - app 
-      # - certbot 
 
-  # certbot:
-  #   build:
-  #     context: ./certbot
-  #     dockerfile: Dockerfile.certbot
-  #   environment:
-  #     - DOMAIN=${DOMAIN}
-  #     - CERTBOT_EMAIL=${CERTBOT_EMAIL}
-  #   volumes:
-  #     - certs:/etc/letsencrypt
-  #     - certs-data:/data/letsencrypt
 
-## create volumes for database, static, media files
+## create volumes for database, static, media files, and nginx error logs
 ## volumes are automatically managed by Docker, not related to the host machine 
 volumes: 
   postgres_data: 

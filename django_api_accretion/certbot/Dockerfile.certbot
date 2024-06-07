@@ -2,6 +2,9 @@ FROM certbot/certbot
 
 LABEL maintainer="accretion.life"
 
+# Install openssl
+RUN apk update && apk add openssl
+
 # Create necessary directories
 RUN mkdir -p /etc/letsencrypt /data/letsencrypt /var/log/letsencrypt
 
@@ -9,14 +12,6 @@ RUN mkdir -p /etc/letsencrypt /data/letsencrypt /var/log/letsencrypt
 VOLUME /etc/letsencrypt
 VOLUME /data/letsencrypt
 VOLUME /var/log/letsencrypt
-
-## Copy necessary files for SSL configuration
-# COPY options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf
-# COPY ssl-dhparams.pem /etc/letsencrypt/ssl-dhparams.pem
-
-## Copy placeholder files for SSL configuration
-COPY options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf.placeholder
-COPY ssl-dhparams.pem /etc/letsencrypt/ssl-dhparams.pem.placeholder
 
 # Define entrypoint script
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh

@@ -19,7 +19,8 @@ RUN mkdir -p /vol/static /vol/media /var/log/nginx /var/cache/nginx && \
     chmod -R 755 /vol && \
     chown -R www-data /vol && \    
     chown -R www-data:www-data /var/log/nginx && \
-    chown -R www-data:www-data /var/cache/nginx
+    chown -R www-data:www-data /var/cache/nginx && \
+    chmod -R 755 /var/log/nginx
 
 USER www-data 
 

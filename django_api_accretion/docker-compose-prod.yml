@@ -43,6 +43,8 @@ services:
       context: ./proxy
       dockerfile: Dockerfile.nginx.prod
     # restart: always
+    environment:
+      - DOMAIN=${DOMAIN}
     ports: 
       - "80:80" 
       - "443:443"
@@ -61,8 +63,8 @@ services:
       context: ./certbot
       dockerfile: Dockerfile.certbot
     environment:
-      - DOMAIN=backend-1.accretion.life
-      - CERTBOTEMAIL=yiqinix@gmail.com
+      - DOMAIN=${DOMAIN}
+      - CERTBOT_EMAIL=${CERTBOT_EMAIL}
     volumes:
       - certs:/etc/letsencrypt
       - certs-data:/data/letsencrypt

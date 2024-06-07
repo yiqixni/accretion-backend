@@ -10,9 +10,13 @@ VOLUME /etc/letsencrypt
 VOLUME /data/letsencrypt
 VOLUME /var/log/letsencrypt
 
-# Copy necessary files for SSL configuration
-COPY options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf
-COPY ssl-dhparams.pem /etc/letsencrypt/ssl-dhparams.pem
+## Copy necessary files for SSL configuration
+# COPY options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf
+# COPY ssl-dhparams.pem /etc/letsencrypt/ssl-dhparams.pem
+
+## Copy placeholder files for SSL configuration
+COPY options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf.placeholder
+COPY ssl-dhparams.pem /etc/letsencrypt/ssl-dhparams.pem.placeholder
 
 # Define entrypoint script
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh

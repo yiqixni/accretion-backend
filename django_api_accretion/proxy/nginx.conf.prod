@@ -13,7 +13,8 @@ http {
     ## redirects all requests to HTTPS  
     server {
         listen 80; 
-        server_name backend-1.accretion.life www.backend-1.accretion.life; 
+        # server_name backend-1.accretion.life www.backend-1.accretion.life; 
+        server_name $DOMAIN www.$DOMAIN; 
 
         ## Serve the Let's Encrypt ACME challenge responses
         location /.well-known/acme-challenge/ {
@@ -26,11 +27,14 @@ http {
     # Define Nginx server for SSL
     server {
         listen 443 ssl;
-        server_name backend-1.accretion.life www.backend-1.accretion.life; # for local development test 
+        # server_name backend-1.accretion.life www.backend-1.accretion.life; 
+        server_name $DOMAIN www.$DOMAIN; 
 
         ## certificates for SSL using letsencrypt
-        ssl_certificate     /etc/nginx/certs/fullchain.pem;
-        ssl_certificate_key /etc/nginx/certs/privkey.pem;
+        # ssl_certificate     /etc/nginx/certs/fullchain.pem;
+        # ssl_certificate_key /etc/nginx/certs/privkey.pem;
+        ssl_certificate     /etc/letsencrypt/live/$DOMAIN/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/$DOMAIN/privkey.pem;
         include             /etc/letsencrypt/options-ssl-nginx.conf;
         ssl_dhparam         /etc/letsencrypt/ssl-dhparams.pem;
         

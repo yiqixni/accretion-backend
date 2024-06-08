@@ -13,22 +13,28 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 
 from .models import PropertyData
-from .serializers import PropertyDataSerializer, PropertyDataImageLinkSerializer 
+from .serializers import PropertyDataSerializer, PropertyDataForView 
 
 # Get API from the .env
 load_dotenv()
 API_key_Attoms = os.getenv('API_KEY_ATTOMS')
 
+# Get proxy config
+proxy_host      = os.getenv('PROXY_HOST')
+proxy_port      = os.getenv('PROXY_PORT')
+proxy_user      = os.getenv('PROXY_USER')
+proxy_password  = os.getenv('PROXY_PASSWORD')
+# Create the proxy URL
+proxy_url = f'http://{proxy_user}:{proxy_password}@{proxy_host}:{proxy_port}'
+
+
+
+# Handle search request for property: returns the json property data 
 class DatabaseVisualizationView(APIView):
     def get(self, request):
         address1 = request.GET.get('address1','')
         address2 = request.GET.get('address2','')
-        propertyID = request.GET.get('propertyid','')        
-
-        if not address1 or not address2:
-            return JsonResponse({'error': 'Missing address parameters'}, status=400)
-
-        query_string = f'address1={address1}&address2={address2}'                
+        propertyID = request.GET.get('propertyid','')                              
         
         try: #retrieve property data from Accretion Database by property ID
             propertyData = PropertyData.objects.get(propertyID = propertyID) 
@@ -40,6 +46,11 @@ class DatabaseVisualizationView(APIView):
         except Exception as e:
             print("===data not found by property id===")
             print(e)
+            
+        if not address1 or not address2:
+            return JsonResponse({'error': 'Missing address parameters'}, status=400)
+
+        query_string = f'address1={address1}&address2={address2}'  
             
         try: #retrieve property data from Accretion Database by query string
             propertyData = PropertyData.objects.get(query_string = query_string) 
@@ -60,9 +71,13 @@ class DatabaseVisualizationView(APIView):
         headers = {
             'apikey': API_key_Attoms,  # Replace with your actual API key
         }
+        proxies = {
+            'http' : proxy_url,
+            'https': proxy_url,
+            }
 
         try:
-            response = requests.get(api_url, headers=headers)
+            response = requests.get(api_url, headers=headers, proxies=proxies)
             response.raise_for_status()  # Raise an exception for HTTP errors
             data = response.json()                
             try: # store the data into local database                      
@@ -85,6 +100,7 @@ class DatabaseVisualizationView(APIView):
         except requests.RequestException as e:
             return JsonResponse({'error': str(e)}, status=500)
         
+# Handle image preview post request returns image preview link 
 class UploadPNGView(APIView):
     parser_classes = (MultiPartParser, FormParser)
 
@@ -116,3 +132,19 @@ class UploadPNGView(APIView):
         full_image_url = request.build_absolute_uri(image_url)
 
         return Response({"imageLink": full_image_url}, status=status.HTTP_200_OK)
+    
+# Handle view get request returns the json property data and preview image 
+class GetPropertyDataImageLinkView(APIView): 
+    def get(self, request): 
+        propertyID = request.GET.get('propertyid', '') 
+        print("=== get property data and image link === propertyID=", propertyID)
+        
+        try: #retrieve property data from Accretion Database by property ID
+            propertyData = PropertyData.objects.get(propertyID = propertyID) 
+            print("===property data found in local database by property ID ===")
+            serializer = PropertyDataForView(propertyData, context={'request': request}) #use context to give imageLink the full URL
+            
+            return JsonResponse(serializer.data) 
+        
+        except requests.RequestException as e:
+            return JsonResponse({'error': str(e)}, status=500)

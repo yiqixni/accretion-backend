@@ -172,6 +172,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000", 
     "https://accretion.life",
     "https://www.accretion.life",  
+    "https://4f4c-2607-fb90-9e17-4939-1069-14dd-683-ed6e.ngrok-free.app",    
 ]
 
 CORS_ALLOWED_METHODS = [

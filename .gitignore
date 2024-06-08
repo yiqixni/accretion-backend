@@ -1,1 +1,7 @@
-django_api_accretion/django_api_accretion/.env
+django_api_accretion/.env
+django_api_accretion/.prod.env
+django_api_accretion/.dev.env
+django_api_accretion/proxy/nginx_error_logs/access.log
+django_api_accretion/proxy/nginx_error_logs/error.log
+django_api_accretionproxy/nginx_error_logs
+accretion-backend-deployment.pem

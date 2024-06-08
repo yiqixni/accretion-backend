@@ -15,6 +15,11 @@ gunicorn = "*"
 django-ses = "*"
 beautifulsoup4 = "*"
 python-dotenv = "*"
+boto3 = "*"
+django-storages = "*"
+psycopg2-binary = "*"
+certbot = "*"
+certbot-nginx = "*"
 
 [dev-packages]
 

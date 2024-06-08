@@ -1,0 +1,26 @@
+FROM nginx:latest
+
+LABEL maintainer="accretion.life" 
+
+# Copy Nginx configuration file to the container
+COPY nginx.conf /etc/nginx/nginx.conf
+
+USER root
+
+# Ensure the /vol/web directory exists and is owned by www-data
+RUN mkdir -p /vol/static /vol/media /var/log/nginx /var/cache/nginx && \ 
+    chmod 777 /var/run && \
+    chmod -R 755 /vol && \
+    chown -R www-data /vol && \    
+    chown -R www-data:www-data /var
+
+USER www-data 
+
+# Expose the port the app runs on
+EXPOSE 80
+EXPOSE 443 
+
+VOLUME /vol/static /vol/media
+
+# Start Nginx service
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,0 +1,28 @@
+FROM certbot/certbot
+
+LABEL maintainer="accretion.life"
+
+# Install openssl and certbot-nginx
+RUN apk update && \
+    apk add --no-cache \
+    certbot \
+    nginx \ 
+    openssl \    
+    certbot-nginx && \
+    rm -rf /var/cache/apk/*
+
+# Create necessary directories
+RUN mkdir -p /etc/letsencrypt /data/letsencrypt /var/log/letsencrypt
+
+# Define volumes to share certificates and logs with the host
+VOLUME /etc/letsencrypt
+VOLUME /data/letsencrypt
+VOLUME /var/log/letsencrypt
+
+# Define entrypoint script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Run the entrypoint script
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+

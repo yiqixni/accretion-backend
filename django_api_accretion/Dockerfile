@@ -33,13 +33,13 @@ RUN groupadd -r webgroup && \
     useradd -r -g webgroup django && \
     usermod -aG webgroup www-data
 
-## create static file directory and grant permission ##
+    ## create static file directory and grant permission ##
 RUN mkdir -p                    /vol/web/static /vol/web/media && \
-    # change ownership from root to django user
-    chown -R django:webgroup    /django_api_accretion /vol /vol/web/static /vol/web/media && \
     # allow the owner to write/read
-    chmod -R 775                /vol /vol/web/static /vol/web/media && \    
-    chmod -R 775                /django_api_accretion 
+    chmod -R 775                /django_api_accretion /vol /vol/web /vol/web/static /vol/web/media && \
+    # change ownership from root to django user
+    chown -R django:webgroup    /django_api_accretion /vol /vol/web /vol/web/static /vol/web/media 
+    
 
 ## change user to django instead of default root user 
 USER django
@@ -53,7 +53,7 @@ COPY ./scripts/entrypoint.sh /entrypoint.sh
 # Expose the port the app runs on
 # EXPOSE 8000
 
-VOLUME /vol/web/static /vol/web/media
+VOLUME /vol/web 
 
 # Set the entrypoint
 ENTRYPOINT ["/entrypoint.sh"]

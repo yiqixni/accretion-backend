@@ -26,17 +26,20 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* 
 
 ## install python packages ##
-RUN pip install --upgrade pip && pip install -r requirements.txt && \
-    # create django as non-root user
-    adduser --disabled-password --no-create-home django  
+RUN pip install --upgrade pip && pip install -r requirements.txt 
+
+# Create shared group and add users
+RUN groupadd -r webgroup && \
+    useradd -r -g webgroup django && \
+    usermod -aG webgroup www-data
 
 ## create static file directory and grant permission ##
-RUN mkdir -p                /vol/web/static /vol/web/media && \
+RUN mkdir -p                    /vol/web/static /vol/web/media && \
     # change ownership from root to django user
-    chown -R django:django  /django_api_accretion /vol /vol/web/static /vol/web/media && \
+    chown -R django:webgroup    /django_api_accretion /vol /vol/web/static /vol/web/media && \
     # allow the owner to write/read
-    chmod -R 755            /vol /vol/web/static /vol/web/media && \    
-    chmod -R 755            /django_api_accretion 
+    chmod -R 755                /vol /vol/web/static /vol/web/media && \    
+    chmod -R 755                /django_api_accretion 
 
 ## change user to django instead of default root user 
 USER django

@@ -14,15 +14,7 @@ services:
       - 8000:8000 # map port 8000 to 8000 
     command: ["gunicorn", "--bind", "0.0.0.0:8000", "django_api_accretion.wsgi:application"] #bind all IP address 0.0.0.0 to the port 8000 
     env_file:
-      - ./.env
-    environment:
-      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY} 
-      - DEBUG=0
-      - ENVIRONMENT=production
-      - DB_HOST=${DB_HOST}
-      - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
+      - ./.env    
     depends_on:
       - db
   

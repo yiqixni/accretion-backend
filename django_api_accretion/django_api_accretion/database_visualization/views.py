@@ -19,6 +19,16 @@ from .serializers import PropertyDataSerializer, PropertyDataForView
 load_dotenv()
 API_key_Attoms = os.getenv('API_KEY_ATTOMS')
 
+# Get proxy config
+proxy_host      = os.getenv('PROXY_HOST')
+proxy_port      = os.getenv('PROXY_PORT')
+proxy_user      = os.getenv('PROXY_USER')
+proxy_password  = os.getenv('PROXY_PASSWORD')
+# Create the proxy URL
+proxy_url = f'http://{proxy_user}:{proxy_password}@{proxy_host}:{proxy_port}'
+
+
+
 # Handle search request for property: returns the json property data 
 class DatabaseVisualizationView(APIView):
     def get(self, request):
@@ -61,9 +71,13 @@ class DatabaseVisualizationView(APIView):
         headers = {
             'apikey': API_key_Attoms,  # Replace with your actual API key
         }
+        proxies = {
+            'http' : proxy_url,
+            'https': proxy_url,
+            }
 
         try:
-            response = requests.get(api_url, headers=headers)
+            response = requests.get(api_url, headers=headers, proxies=proxies)
             response.raise_for_status()  # Raise an exception for HTTP errors
             data = response.json()                
             try: # store the data into local database                      

@@ -10,7 +10,7 @@ COPY ./nginx.conf.prod /etc/nginx/conf.d/default.conf
 
 # Ensure the /vol/web directory exists and is owned by webgroup
 RUN groupadd    -r                      webgroup                                                                        && \
-    useradd     -r -g                   webgroup www-data                                                               && \
+    usermod     -aG                     webgroup www-data                                                               && \
     mkdir       -p                      /vol/static /vol/media /var/log/nginx /var/cache/nginx /etc/letsencrypt         && \
     chmod       777                     /var/run                                                                        && \ 
     chmod       -R  775                 /vol /vol/static /vol/media /var/log/nginx /var/cache/nginx /etc/letsencrypt    && \

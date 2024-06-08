@@ -23,19 +23,20 @@ RUN apt-get update && \
             libpq-dev  \
             gcc && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \ 
-    pip install --upgrade pip && pip install -r requirements.txt && \
-    # create django as non-root user
-    adduser --disabled-password --no-create-home django  && \
-    # create static file directory and grant permission 
-    mkdir -p /vol/web/static /vol/web/media && \
-    chmod -R 755 /vol && \    
-    # create socket directory and grant permission 
-    mkdir -p /django_api_accretion/sockets && \ 
-    chmod -R 755 /django_api_accretion && \
-    # change ownership from root to django user
-    chown -R django /django_api_accretion /vol 
+    rm -rf /var/lib/apt/lists/* 
 
+## install python packages ##
+RUN pip install --upgrade pip && pip install -r requirements.txt && \
+    # create django as non-root user
+    adduser --disabled-password --no-create-home django  
+
+## create static file directory and grant permission ##
+RUN mkdir -p                /vol/web/static /vol/web/media && \
+    # change ownership from root to django user
+    chown -R django:django  /django_api_accretion /vol /vol/web/static /vol/web/media && \
+    # allow the owner to write/read
+    chmod -R 755            /vol /vol/web/static /vol/web/media && \    
+    chmod -R 755            /django_api_accretion 
 
 ## change user to django instead of default root user 
 USER django

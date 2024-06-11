@@ -1,5 +1,10 @@
+import os 
+from dotenv import load_dotenv 
 from rest_framework import serializers 
 from .models import PropertyData 
+
+load_dotenv()
+host_domain = os.getenv('DOMAIN')
 
 class PropertyDataSerializer(serializers.ModelSerializer):
     class Meta: 
@@ -21,5 +26,5 @@ class PropertyDataForView(serializers.ModelSerializer):
         request = self.context.get('request')
         if request:
             # representation['imageLink'] = request.build_absolute_uri(instance.imageLink)
-            representation['imageLink'] = "https://7baf-2607-fb90-9e17-4939-1069-14dd-683-ed6e.ngrok-free.app" + (instance.imageLink)
+            representation['imageLink'] = host_domain + (instance.imageLink)
         return representation 

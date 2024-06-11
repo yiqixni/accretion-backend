@@ -137,8 +137,10 @@ class UploadPNGView(APIView):
 class GetPropertyDataImageLinkView(APIView): 
     def get(self, request): 
         propertyID = request.GET.get('propertyid', '') 
-        print("=== get property data and image link === propertyID=", propertyID)
+        address1 = request.GET.get('address1','')
+        address2 = request.GET.get('address2','')                
         
+        print("=== get property data and image link === propertyID=", propertyID)
         try: #retrieve property data from Accretion Database by property ID
             propertyData = PropertyData.objects.get(propertyID = propertyID) 
             print("===property data found in local database by property ID ===")
@@ -146,5 +148,28 @@ class GetPropertyDataImageLinkView(APIView):
             
             return JsonResponse(serializer.data) 
         
-        except requests.RequestException as e:
-            return JsonResponse({'error': str(e)}, status=500)
+        # except requests.RequestException as e:
+        #     return JsonResponse({'error': str(e)}, status=500)
+        except Exception as e:
+            print("===data not found by property id===")
+            print(e) 
+        
+        if not address1 or not address2:
+            return JsonResponse({'error': 'Missing address parameters'}, status=400)
+
+        query_string = f'address1={address1}&address2={address2}'  
+        
+        try: #retrieve property data from Accretion Database by address query string
+            propertyData = PropertyData.objects.get(query_string = query_string) 
+            print("===property data found in local database by query string===")
+            serializer = PropertyDataForView(propertyData, context={'request': request})             
+            
+            return JsonResponse(serializer.data) 
+        
+        except Exception as e:
+            print("===data not found by query string===")
+            print(e)
+        
+        return JsonResponse({'error': str(e)}, status=500)
+        
+        

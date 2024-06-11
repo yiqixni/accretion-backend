@@ -4,7 +4,7 @@ from rest_framework import serializers
 from .models import PropertyData 
 
 load_dotenv()
-host_domain = os.getenv('DOMAIN')
+host_domain = os.getenv('DOMAIN_GET_PNG')
 
 class PropertyDataSerializer(serializers.ModelSerializer):
     class Meta: 

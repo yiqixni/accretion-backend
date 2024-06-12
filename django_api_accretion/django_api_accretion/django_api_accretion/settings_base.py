@@ -15,6 +15,7 @@ INSTALLED_APPS = [
     "contact", 
     "database", 
     "database_visualization",
+    "create_tags",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

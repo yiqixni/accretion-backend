@@ -1,9 +1,41 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from database_visualization.views import GetPropertyDataImageLinkView
 
 class CreateTagsView(View):
     def get(self, request):
+        user_agent = request.META.get('HTTP_USER_AGENT', '').lower()         
+        # List of common crawler 
+        bots= [
+            'googlebot', 'bingbot', 'slurp', 'duckduckbot', 'baiduspider', 'yandexbot', 
+            'sogou', 'exabot', 'facebot', 'ia_archiver', 'facebookexternalhit', 'twitterbot', 
+            'linkedinbot', 'embedly', 'pinterest', 'slackbot', 'discordbot', 'whatsapp', 
+            'telegrambot', 'applebot', 'google page speed insights'
+        ]
+        # Check if the user agent is a crawler
+        is_crawler = any(bot in user_agent for bot in bots) 
+        
+        # return meta tags if the user is not from a browser
+        if is_crawler:
+            # Generate the meta tags HTML for crawlers            
+            context = self.get_meta_tags_context(request)            
+            return HttpResponse(context, content_type='text/html') 
+
+        # If not a crawler, redirect to the React app
+        return self.redirect_to_frontend(request)
+
+    def redirect_to_frontend(self, request):
+        # Extract the original query parameters
+        query_string = request.META.get('QUERY_STRING', '')
+        
+        # Construct the new URL for the frontend
+        new_url = f"https://accretion.life/database/demo/view/?{query_string}"
+        
+        # Redirect to the new URL
+        return HttpResponseRedirect(new_url)
+    
+    
+    def get_meta_tags_context(self, request):
         propertyID = request.GET.get('propertyid', '')
         address1 = request.GET.get('address1', '')
         address2 = request.GET.get('address2', '')
@@ -12,7 +44,7 @@ class CreateTagsView(View):
         data = data_view.get_property_data(propertyID, address1, address2, request)
 
         if not data:
-            return HttpResponse('<h1>Data not found</h1>', status=404)
+            return '<h1>Data not found</h1>'
 
         imageLink = data.get('imageLink', '')
         address_display = f"{address1}, {address2}"
@@ -55,4 +87,4 @@ class CreateTagsView(View):
         </html>
         """
 
-        return HttpResponse(html_content, content_type='text/html')
+        return html_content

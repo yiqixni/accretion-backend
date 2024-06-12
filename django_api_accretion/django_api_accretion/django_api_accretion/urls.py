@@ -29,7 +29,7 @@ urlpatterns = [
     path("api/contact-us/", include("contact.urls")),
     path("api/database/", include("database.urls")),
     path("api/database-visualization/", include("database_visualization.urls")),    
-    path("database/demo/view/", include("create_tags.urls")),    
+    path("database/demo/share/", include("create_tags.urls")),    
     ## Django debug toolbar
     path("__debug__/", include("debug_toolbar.urls")),
     ## Djoser library 

@@ -9,12 +9,16 @@ class CreateTagsView(View):
     def get(self, request):
         user_agent = request.META.get('HTTP_USER_AGENT', '').lower()      
         
-        logger.info(f"User Agent: {user_agent}")  
-        print(f"====USER AGENT: {user_agent} ====") 
+        logger.info(f"////FOR DEV META TAGS: User Agent: {user_agent} ////")  
+        # print(f"====USER AGENT: {user_agent} ====") 
+        # # List of common browser identifiers
+        # browsers = ['safari', 'chrome', 'firefox', 'opera', 'edge']
+        # # Check if the user agent is a browser
+        # is_browser = any(browser in user_agent for browser in browsers)
         # List of common crawler 
         bots= [
             'googlebot', 'bingbot', 'slurp', 'duckduckbot', 'baiduspider', 'yandexbot', 
-            'sogou', 'exabot', 'facebot', 'ia_archiver', 'facebookexternalhit', 'twitterbot', 
+            'sogou', 'exabot', 'facebot', 'ia_archiver', 'facebookexternalhit', 'twitterbot', 'twitterbot/1.0',
             'linkedinbot', 'embedly', 'pinterest', 'slackbot', 'discordbot', 'whatsapp', 
             'telegrambot', 'applebot', 'google page speed insights'
         ]

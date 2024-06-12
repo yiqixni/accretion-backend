@@ -4,7 +4,8 @@ from database_visualization.views import GetPropertyDataImageLinkView
 
 class CreateTagsView(View):
     def get(self, request):
-        user_agent = request.META.get('HTTP_USER_AGENT', '').lower()         
+        user_agent = request.META.get('HTTP_USER_AGENT', '').lower()        
+        print(f"====USER AGENT: {user_agent} ====") 
         # List of common crawler 
         bots= [
             'googlebot', 'bingbot', 'slurp', 'duckduckbot', 'baiduspider', 'yandexbot', 

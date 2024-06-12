@@ -59,7 +59,7 @@ class CreateTagsView(View):
         imageLink = data.get('imageLink', '')
         address_display = f"{address1}, {address2}"
         redirect_url = f"https://www.accretion.life/database/demo/view/?address1={address1}&address2={address2}"        
-        tag_description = f"Title Abstract of {address_display} from Accretion Database."
+        tag_description = f"Title Abstract Visualized by Accretion Database."
         # tag_title = "Accretion is building the best database for real estate titles.\n" + tag_description
         tag_title = tag_description 
 

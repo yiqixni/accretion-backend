@@ -2,9 +2,14 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from database_visualization.views import GetPropertyDataImageLinkView
 
+import logging
+logger = logging.getLogger(__name__)
+
 class CreateTagsView(View):
     def get(self, request):
-        user_agent = request.META.get('HTTP_USER_AGENT', '').lower()        
+        user_agent = request.META.get('HTTP_USER_AGENT', '').lower()      
+        
+        logger.info(f"User Agent: {user_agent}")  
         print(f"====USER AGENT: {user_agent} ====") 
         # List of common crawler 
         bots= [

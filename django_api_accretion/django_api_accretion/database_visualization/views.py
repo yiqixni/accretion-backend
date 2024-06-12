@@ -134,42 +134,40 @@ class UploadPNGView(APIView):
         return Response({"imageLink": full_image_url}, status=status.HTTP_200_OK)
     
 # Handle view get request returns the json property data and preview image 
-class GetPropertyDataImageLinkView(APIView): 
-    def get(self, request): 
-        propertyID = request.GET.get('propertyid', '') 
-        address1 = request.GET.get('address1','')
-        address2 = request.GET.get('address2','')                
-        
-        print("=== get property data and image link === propertyID=", propertyID)
-        try: #retrieve property data from Accretion Database by property ID
-            propertyData = PropertyData.objects.get(propertyID = propertyID) 
-            print("===property data found in local database by property ID ===")
-            serializer = PropertyDataForView(propertyData, context={'request': request}) #use context to give imageLink the full URL
-            
-            return JsonResponse(serializer.data) 
-        
-        # except requests.RequestException as e:
-        #     return JsonResponse({'error': str(e)}, status=500)
-        except Exception as e:
-            print("===data not found by property id===")
-            print(e) 
-        
-        if not address1 or not address2:
-            return JsonResponse({'error': 'Missing address parameters'}, status=400)
+class GetPropertyDataImageLinkView(APIView):
+    def get_property_data(self, propertyID, address1, address2, request):
+        if propertyID:
+            try:
+                # Retrieve property data from Accretion Database by property ID                
+                propertyData = PropertyData.objects.get(propertyID=propertyID)
+                serializer = PropertyDataForView(propertyData, context={'request': request})
+                return serializer.data
+            except PropertyData.DoesNotExist:
+                pass
 
-        query_string = f'address1={address1}&address2={address2}'  
+        if address1 and address2:
+            query_string = f'address1={address1}&address2={address2}'
+            try:
+                # Retrieve property data from Accretion Database by address query string
+                propertyData = PropertyData.objects.get(query_string=query_string)
+                serializer = PropertyDataForView(propertyData, context={'request': request})
+                return serializer.data
+            except PropertyData.DoesNotExist:
+                pass
         
-        try: #retrieve property data from Accretion Database by address query string
-            propertyData = PropertyData.objects.get(query_string = query_string) 
-            print("===property data found in local database by query string===")
-            serializer = PropertyDataForView(propertyData, context={'request': request})             
-            
-            return JsonResponse(serializer.data) 
+        return None
+
+    def get(self, request):
+        propertyID = request.GET.get('propertyid', '')
+        address1 = request.GET.get('address1', '')
+        address2 = request.GET.get('address2', '')
         
-        except Exception as e:
-            print("===data not found by query string===")
-            print(e)
-        
-        return JsonResponse({'error': str(e)}, status=500)
+        data = self.get_property_data(propertyID, address1, address2, request)
+
+        if data:
+            return JsonResponse(data)
+
+        return JsonResponse({'error': 'Data not found'}, status=404)
+
         
         

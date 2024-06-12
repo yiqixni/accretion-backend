@@ -1,5 +1,6 @@
 django_api_accretion/.env
 django_api_accretion/.prod.env
+django_api_accretion/.stage.env
 django_api_accretion/.dev.env
 django_api_accretion/proxy/nginx_error_logs/access.log
 django_api_accretion/proxy/nginx_error_logs/error.log
